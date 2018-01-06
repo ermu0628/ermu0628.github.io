@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1003. 我要通过！(20) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率0.25
+1. 题目描述
+“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。
+得到“答案正确”的条件是：
+
+字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；
+任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；
+如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a, b, c 均或" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/categories/pat">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/about">关于</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1003. 我要通过！(20)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/06/B1003-我要通过！-20/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-06T06:50:42.000Z" itemprop="datePublished">2018-01-06</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率0.25<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>“答案正确”是自动判题系统给出的最令人欢喜的回复。本题属于PAT的“答案正确”大派送 —— 只要读入的字符串满足下列条件，系统就输出“答案正确”，否则输出“答案错误”。</p>
+<p>得到“答案正确”的条件是：</p>
+<ol>
+<li>字符串中必须仅有P, A, T这三种字符，不可以包含其它字符；</li>
+<li>任意形如 xPATx 的字符串都可以获得“答案正确”，其中 x 或者是空字符串，或者是仅由字母 A 组成的字符串；</li>
+<li>如果 aPbTc 是正确的，那么 aPbATca 也是正确的，其中 a, b, c 均或者是空字符串，或者是仅由字母 A 组成的字符串。</li>
+</ol>
+<p>现在就请你为PAT写一个自动裁判程序，判定哪些字符串是可以获得“答案正确”的。<br>输入格式： 每个测试输入包含1个测试用例。第1行给出一个自然数n (&lt;10)，是需要检测的字符串个数。接下来每个字符串占一行，字符串长度不超过100，且不包含空格。</p>
+<p>输出格式：每个字符串的检测结果占一行，如果该字符串可以获得“答案正确”，则输出YES，否则输出NO。</p>
+<p>输入样例：<br>8<br>PAT<br>PAAT<br>AAPATAA<br>AAPAATAAAA<br>xPATx<br>PT<br>Whatever<br>APAAATAA</p>
+<p>输出样例：<br>YES<br>YES<br>YES<br>YES<br>NO<br>NO<br>NO<br>NO</p>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><p>这个题一拿到手，题目的条件就看的有点头大，然后仔细一分析，其实很简单。经过翻译之后符合条件的字符串应该满足的条件为三条：<br>1.只含有P，A，T三个字符<br>2.只能含有一个P和一个T，且P应该在T的前面，并且PT中间最少有一个A<br>3.PT中A的数量相当于计数单位，T之后A的数量应该等于PT之间A的数量*P之前A的数量。<br>通过以上三个条件，可以得到如下的大致思路：扫描一遍输入的字符串，记录下P的位置，T的位置，P的数量，T的数量，以及是否有除了PAT以外其他的字符。<br>判断P的位置和T的数量、位置是否满足条件2，如果满足，那么再判断条件3是否成立，如果成立，则表明符合题中所述条件。否则，不满足。同时要注意的是输出字符串的格式。</p>
+</blockquote>
+<h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">110</span>];</span><br><span class="line">	<span class="keyword">int</span> t_num = <span class="number">0</span>, p_num = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> p_pos = <span class="number">-1</span>, t_pos = <span class="number">-1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">		<span class="built_in">memset</span>(s, <span class="number">0</span>, <span class="keyword">sizeof</span>(s));</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">		t_num = <span class="number">0</span>; p_num = <span class="number">0</span>;</span><br><span class="line">		p_pos = <span class="number">-1</span>; t_pos = <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="built_in">strlen</span>(s); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (s[j] == <span class="string">'P'</span>) &#123;</span><br><span class="line">				p_num++;</span><br><span class="line">				p_pos = j;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[j] == <span class="string">'T'</span>) &#123;</span><br><span class="line">				t_num++;</span><br><span class="line">				t_pos = j;</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[j] == <span class="string">'A'</span>) &#123;</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> (j != <span class="built_in">strlen</span>(s)) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (t_pos &lt;= p_pos + <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> (t_num != <span class="number">1</span> || p_num != <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> <span class="keyword">if</span> ((p_pos - <span class="number">0</span>) * (t_pos - p_pos - <span class="number">1</span>) != (<span class="built_in">strlen</span>(s) - t_pos - <span class="number">1</span>)) &#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"NO\n"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">"YES\n"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>
