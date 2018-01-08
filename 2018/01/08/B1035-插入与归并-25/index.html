@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1035. 插入与归并(25) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率
+1. 题目描述
+根据维基百科的定义：
+插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。
+归并排序进行如下迭代操作：首先将原始序列看成N个只包含1个元素的有序子序列，然后每次迭代归并两个相邻的有序子序列，直到最后只剩下1个有序的序列。
+现给定原始序列和由某排序算法产生的中间序列，请你判断该算法究竟是哪种排序算法？
+输入格式：
+输入在第一行给出正整数N (&amp;lt;=100)；随后一行" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/PAT/">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/ML">ML</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1035. 插入与归并(25)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/08/B1035-插入与归并-25/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-08T11:34:59.000Z" itemprop="datePublished">2018-01-08</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>根据维基百科的定义：</p>
+<p>插入排序是迭代算法，逐一获得输入数据，逐步产生有序的输出序列。每步迭代中，算法从输入序列中取出一元素，将之插入有序序列中正确的位置。如此迭代直到全部元素有序。</p>
+<p>归并排序进行如下迭代操作：首先将原始序列看成N个只包含1个元素的有序子序列，然后每次迭代归并两个相邻的有序子序列，直到最后只剩下1个有序的序列。</p>
+<p>现给定原始序列和由某排序算法产生的中间序列，请你判断该算法究竟是哪种排序算法？</p>
+<p>输入格式：</p>
+<p>输入在第一行给出正整数N (&lt;=100)；随后一行给出原始序列的N个整数；最后一行给出由某排序算法产生的中间序列。这里假设排序的目标序列是升序。数字间以空格分隔。</p>
+<p>输出格式：</p>
+<p>首先在第1行中输出“Insertion Sort”表示插入排序、或“Merge Sort”表示归并排序；然后在第2行中输出用该排序算法再迭代一轮的结果序列。题目保证每组测试的结果是唯一的。数字间以空格分隔，且行末不得有多余空格。<br>输入样例1：<br>10<br>3 1 2 8 7 5 9 4 6 0<br>1 2 3 7 8 5 9 4 6 0<br>输出样例1：<br>Insertion Sort<br>1 2 3 5 7 8 9 4 6 0<br>输入样例2：<br>10<br>3 1 2 8 7 5 9 4 0 6<br>1 3 2 8 5 7 4 9 0 6<br>输出样例2：<br>Merge Sort<br>1 2 3 8 4 5 7 9 0 6</p>
+</blockquote>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><p>关键在于对归并排序和直接插入排序算法的掌握</p>
+<h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void insert_sort(int data[], int n, int i) &#123;</span><br><span class="line">	int temp;</span><br><span class="line">	if (data[i - 1] &gt; data[i]) &#123;</span><br><span class="line">		temp = data[i];</span><br><span class="line">		int j = i;</span><br><span class="line">		while (j &gt; 0 &amp;&amp; data[j - 1] &gt; temp) &#123;</span><br><span class="line">			data[j] = data[j - 1];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line">		data[j] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void merge(int data[], int low, int mid, int high) &#123;</span><br><span class="line">	int i = low;</span><br><span class="line">	int j = mid + 1;</span><br><span class="line">	int k = 0;</span><br><span class="line">	int array[high-low+1];</span><br><span class="line">	while (i &lt;= mid &amp;&amp; j &lt;= high) &#123;</span><br><span class="line">		if (data[i] &lt;= data[j]) &#123;</span><br><span class="line">			array[k] = data[i];</span><br><span class="line">			i++;</span><br><span class="line">			k++;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			array[k] = data[j];</span><br><span class="line">			j++;</span><br><span class="line">			k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	while (i &lt;= mid) &#123;</span><br><span class="line">		array[k] = data[i];</span><br><span class="line">		i++;</span><br><span class="line">		k++;</span><br><span class="line">	&#125;</span><br><span class="line">	while (j &lt;= high) &#123;</span><br><span class="line">		array[k] = data[j];</span><br><span class="line">		j++;</span><br><span class="line">		k++;</span><br><span class="line">	&#125;</span><br><span class="line">	for (k = 0, i = low; i &lt;= high; i++, k++) &#123;</span><br><span class="line">		data[i] = array[k];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void merge_sort(int data[], int n, int i) &#123;</span><br><span class="line">	int step = 1;</span><br><span class="line">	for (int j = 1; j &lt; i; ++j) &#123;</span><br><span class="line">		step *= 2;</span><br><span class="line">	&#125;</span><br><span class="line">	int j = 0;</span><br><span class="line">	for (j = 0; j + 2 * step - 1 &lt; n; j = j + 2 * step) &#123;</span><br><span class="line">		merge(data, j, j + step - 1, j + 2 * step - 1);</span><br><span class="line">	&#125;</span><br><span class="line">	if (j + step - 1 &lt; n) &#123;</span><br><span class="line">		merge(data, j, j + step - 1, n - 1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool is_check(int data[], int n, int check[]) &#123;</span><br><span class="line">	bool c = true;</span><br><span class="line">	for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">		if (check[j] != data[j]) &#123;</span><br><span class="line">			c = false;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, data[100] = &#123;0&#125;, data2[100] = &#123;0&#125;;</span><br><span class="line">	int check[100] = &#123;0&#125;;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		cin &gt;&gt; data[i];</span><br><span class="line">		data2[i] = data[i];</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		cin &gt;&gt; check[i];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 1; i &lt; n; ++i) &#123;</span><br><span class="line">		insert_sort(data, n, i);</span><br><span class="line">		if (is_check(data, n, check)) &#123;</span><br><span class="line">			printf(&quot;Insertion Sort\n&quot;);</span><br><span class="line">			insert_sort(data, n, i + 1);</span><br><span class="line">			for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">				if (j != n - 1) &#123;</span><br><span class="line">					printf(&quot;%d &quot;, data[j]);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					printf(&quot;%d&quot;, data[j]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		merge_sort(data2, n, i);</span><br><span class="line">		if (is_check(data2, n, check)) &#123;</span><br><span class="line">			printf(&quot;Merge Sort\n&quot;);</span><br><span class="line">			merge_sort(data2, n, i + 1);</span><br><span class="line">			for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">				if (j != n - 1) &#123;</span><br><span class="line">					printf(&quot;%d &quot;, data2[j]);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					printf(&quot;%d&quot;, data2[j]);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272012443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272012443%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>

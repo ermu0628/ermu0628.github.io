@@ -7,19 +7,18 @@
 
     
 
-    <title>B1030. 完美数列(25) | susu</title>
+    <title>B1032. 挖掘机技术哪家强(20) | susu</title>
     <meta name="author" content="sususususu" />
     <meta name="version" content="1.0.0" />
     <meta name="keywords" content="" />
     <meta name="description" content="通过率
 1. 题目描述
-给定一个正整数数列，和正整数p，设这个数列中的最大值是M，最小值是m，如果M &amp;lt;= m * p，则称这个数列是完美数列。
-现在给定参数p和一些正整数，请你从中选择尽可能多的数构成一个完美数列。
+为了用事实说明挖掘机技术到底哪家强，PAT组织了一场挖掘机技能大赛。现请你根据比赛结果统计出技术最强的那个学校。
 输入格式：
-输入第一行给出两个正整数N和p，其中N（&amp;lt;= 105）是输入的正整数的个数，p（&amp;lt;= 109）是给定的参数。第二行给出N个正整数，每个数不超过109。
+输入在第1行给出不超过105的正整数N，即参赛人数。随后N行，每行给出一位参赛者的信息和成绩，包括其所代表的学校的编号（从1开始连续编号）、及其比赛成绩（百分制），中间以空格分隔。
 输出格式：
-在一行中输出最多可以选择多少个数可以用它们组成一个完美数列。
-输入样例：10 82 3 " />
+在一行中给出总得分最高的学校的编号、及其总分，中间以空格分隔。题目保证答案唯一，没有并列。
+输入样例：63 652 801 1002 703 403 0输出" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
     <meta name="baidu-site-verification" content="F0CXvmUgA9" />
@@ -93,15 +92,15 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            B1030. 完美数列(25)
+            B1032. 挖掘机技术哪家强(20)
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="/2018/01/07/B1030-完美数列-25/">
+            <a class="article-date" href="/2018/01/08/B1032-挖掘机技术哪家强-20/">
     
     <i class="icon-calendar"></i>
     
-    <time datetime="2018-01-07T07:17:00.000Z" itemprop="datePublished">2018-01-07</time>
+    <time datetime="2018-01-08T11:18:07.000Z" itemprop="datePublished">2018-01-08</time>
 </a>
 
             
@@ -118,16 +117,15 @@
         
         <p>通过率<br><a id="more"></a></p>
 <h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
-<p>给定一个正整数数列，和正整数p，设这个数列中的最大值是M，最小值是m，如果M &lt;= m * p，则称这个数列是完美数列。</p>
-<p>现在给定参数p和一些正整数，请你从中选择尽可能多的数构成一个完美数列。</p>
+<p>为了用事实说明挖掘机技术到底哪家强，PAT组织了一场挖掘机技能大赛。现请你根据比赛结果统计出技术最强的那个学校。</p>
 <p>输入格式：</p>
-<p>输入第一行给出两个正整数N和p，其中N（&lt;= 105）是输入的正整数的个数，p（&lt;= 109）是给定的参数。第二行给出N个正整数，每个数不超过109。</p>
+<p>输入在第1行给出不超过105的正整数N，即参赛人数。随后N行，每行给出一位参赛者的信息和成绩，包括其所代表的学校的编号（从1开始连续编号）、及其比赛成绩（百分制），中间以空格分隔。</p>
 <p>输出格式：</p>
-<p>在一行中输出最多可以选择多少个数可以用它们组成一个完美数列。</p>
-<p>输入样例：<br>10 8<br>2 3 20 4 5 1 6 7 8 9<br>输出样例：<br>8</p>
+<p>在一行中给出总得分最高的学校的编号、及其总分，中间以空格分隔。题目保证答案唯一，没有并列。</p>
+<p>输入样例：<br>6<br>3 65<br>2 80<br>1 100<br>2 70<br>3 40<br>3 0<br>输出样例：<br>2 150</p>
 </blockquote>
-<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><p>刚开始想的是暴力破解，结果有三条数据超时，改进了算法，采用two pointers，减少不必要的循环。</p>
-<h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, max = 0;</span><br><span class="line">	long long int data[100000];</span><br><span class="line">	long long int p;</span><br><span class="line">	scanf(&quot;%d%lld&quot;, &amp;n, &amp;p);</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		scanf(&quot;%lld&quot;, &amp;data[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(data, data + n);</span><br><span class="line"></span><br><span class="line">	for (int j = 0; j &lt; n; ++j) &#123;</span><br><span class="line">		for (int i = j + max; i &lt; n; ++i) &#123;</span><br><span class="line">			if (data[i] &gt; data[j]*p) &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				if (i - j + 1 &gt; max) &#123;</span><br><span class="line">					max = i - j + 1;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d\n&quot;, max);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><p>基础题</p>
+<h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;cstdio&gt;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n;</span><br><span class="line">	int score[100010] = &#123;0&#125;;</span><br><span class="line">	int num, grade;</span><br><span class="line">	int max, max_num;</span><br><span class="line">	scanf(&quot;%d&quot;, &amp;n);</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		scanf(&quot;%d%d&quot;, &amp;num, &amp;grade);</span><br><span class="line">		score[num] += grade;</span><br><span class="line">		if (score[num] &gt; max) &#123;</span><br><span class="line">			max = score[num];</span><br><span class="line">			max_num = num;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%d %d\n&quot;, max_num, max);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
     </section>
 </article>
