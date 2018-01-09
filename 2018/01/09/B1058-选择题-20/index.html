@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1058. 选择题(20) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率
+1. 题目描述
+批改多选题是比较麻烦的事情，本题就请你写个程序帮助老师批改多选题，并且指出哪道题错的人最多。
+输入格式：
+输入在第一行给出两个正整数N（&amp;lt;=1000）和M（&amp;lt;=100），分别是学生人数和多选题的个数。随后M行，每行顺次给出一道题的满分值（不超过5的正整数）、选项个数（不少于2且不超过5的正整数）、正确选项个数（不超过选项个数的正整数）、所有正确选项。注意每题的选项从小写英文字母a开始顺次排列。各项间以1个空格分隔。最后N行，每行给出一个学生的答题情况，其每题答" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/PAT/">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/ML">ML</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1058. 选择题(20)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/09/B1058-选择题-20/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-09T09:30:34.000Z" itemprop="datePublished">2018-01-09</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>批改多选题是比较麻烦的事情，本题就请你写个程序帮助老师批改多选题，并且指出哪道题错的人最多。</p>
+<p>输入格式：</p>
+<p>输入在第一行给出两个正整数N（&lt;=1000）和M（&lt;=100），分别是学生人数和多选题的个数。随后M行，每行顺次给出一道题的满分值（不超过5的正整数）、选项个数（不少于2且不超过5的正整数）、正确选项个数（不超过选项个数的正整数）、所有正确选项。注意每题的选项从小写英文字母a开始顺次排列。各项间以1个空格分隔。最后N行，每行给出一个学生的答题情况，其每题答案格式为“(选中的选项个数 选项1 ……)”，按题目顺序给出。注意：题目保证学生的答题情况是合法的，即不存在选中的选项数超过实际选项数的情况。</p>
+<p>输出格式：</p>
+<p>按照输入的顺序给出每个学生的得分，每个分数占一行。注意判题时只有选择全部正确才能得到该题的分数。最后一行输出错得最多的题目的错误次数和编号（题目按照输入的顺序从1开始编号）。如果有并列，则按编号递增顺序输出。数字间用空格分隔，行首尾不得有多余空格。如果所有题目都没有人错，则在最后一行输出“Too simple”。</p>
+<p>输入样例：<br>3 4<br>3 4 2 a c<br>2 5 1 b<br>5 3 2 b c<br>1 5 4 a b d e<br>(2 a c) (2 b d) (2 a c) (3 a b e)<br>(2 a c) (1 b) (2 a b) (4 a b d e)<br>(2 b d) (1 e) (2 b c) (4 a b c d)<br>输出样例：<br>3<br>6<br>5<br>2 2 3 4</p>
+</blockquote>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><p>难点在于对于输入的字符串的处理，以及批错题、统计分数的过程。</p>
+<h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">struct Question &#123;</span><br><span class="line">	int score;</span><br><span class="line">	int num;</span><br><span class="line">	int right_num;</span><br><span class="line">	char choice[15];</span><br><span class="line">&#125;;</span><br><span class="line">struct Student &#123;</span><br><span class="line">	char choice[1000];</span><br><span class="line">&#125;;</span><br><span class="line">int main() &#123;</span><br><span class="line">	int n, m, j, x, num = 0;</span><br><span class="line">	Question question[100];</span><br><span class="line">	Student student[1000];</span><br><span class="line">	bool right_answer[100][5] = &#123;0&#125;;</span><br><span class="line">	bool student_answer[1000][100][5] = &#123;0&#125;;</span><br><span class="line">	int wrong[100] = &#123;0&#125;;</span><br><span class="line">	int grades[1000] = &#123;0&#125;;</span><br><span class="line">	bool is_wrong, not_right, right;</span><br><span class="line">	scanf(&quot;%d %d&quot;, &amp;n, &amp;m);</span><br><span class="line">	getchar();</span><br><span class="line">	for (int i = 0; i &lt; m; ++i) &#123;</span><br><span class="line">		j = 0;</span><br><span class="line">		scanf(&quot;%d %d %d&quot;, &amp;question[i].score, &amp;question[i].num, &amp;question[i].right_num);</span><br><span class="line">		fgets(question[i].choice, 15, stdin);</span><br><span class="line">		while (question[i].choice[j] != &apos;\0&apos;) &#123;</span><br><span class="line">			if (question[i].choice[j] &gt;= &apos;a&apos; &amp;&amp; question[i].choice[j] &lt;= &apos;z&apos;) &#123;</span><br><span class="line">				right_answer[i][question[i].choice[j] - &apos;a&apos;] = true;</span><br><span class="line">			&#125;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		x = 0; j = 0;</span><br><span class="line">		fgets(student[i].choice, 1000, stdin);</span><br><span class="line">		while (student[i].choice[j] != &apos;\0&apos;) &#123;</span><br><span class="line">			if (student[i].choice[j] &gt;= &apos;a&apos; &amp;&amp; student[i].choice[j] &lt;= &apos;z&apos;) &#123;</span><br><span class="line">				student_answer[i][x][student[i].choice[j] - &apos;a&apos;] = 1;</span><br><span class="line">			&#125; else if (student[i].choice[j] == &apos;)&apos;) &#123;</span><br><span class="line">				x++;</span><br><span class="line">			&#125;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">			is_wrong = false; not_right = false; right = false;</span><br><span class="line">			for (int x = 0; x &lt; 5; ++x) &#123;</span><br><span class="line">				if (student_answer[i][j][x] == true &amp;&amp; right_answer[j][x] == true) &#123;</span><br><span class="line">					continue;</span><br><span class="line">				&#125; else if (student_answer[i][j][x] == false &amp;&amp; right_answer[j][x] == true) &#123;</span><br><span class="line">					not_right = true;</span><br><span class="line">					wrong[j]++;</span><br><span class="line">					break;</span><br><span class="line">				&#125; else if (student_answer[i][j][x] == true &amp;&amp; right_answer[j][x] == false) &#123;</span><br><span class="line">					is_wrong = true;</span><br><span class="line">					wrong[j]++;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if (is_wrong || not_right) &#123;</span><br><span class="line">				grades[i] += 0;</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				grades[i] += question[j].score;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		printf(&quot;%d\n&quot;, grades[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	int max = 0;</span><br><span class="line">	for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">		if (wrong[j] &gt; max) &#123;</span><br><span class="line">			max = wrong[j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if (max == 0) &#123;</span><br><span class="line">		printf(&quot;Too simple\n&quot;);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		printf(&quot;%d &quot;, max);</span><br><span class="line">		for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">			if (wrong[j] == max) &#123;</span><br><span class="line">				num++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">			if (wrong[j] == max) &#123;</span><br><span class="line">				if (num != 1) &#123;</span><br><span class="line">					printf(&quot;%d &quot;, j + 1);</span><br><span class="line">				&#125; else &#123;</span><br><span class="line">					printf(&quot;%d&quot;, j + 1);</span><br><span class="line">				&#125;</span><br><span class="line">				num--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272012443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272012443%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>
