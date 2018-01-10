@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1075. 链表元素分类(25) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率
+1. 题目描述
+给定一个单链表，请编写程序将链表元素进行分类排列，使得所有负值元素都排在非负值元素的前面，而[0, K]区间内的元素都排在大于K的元素前面。但每一类内部元素的顺序是不能改变的。例如：给定链表为 18→7→-4→0→5→-6→10→11→-2，K为10，则输出应该为 -4→-6→-2→7→0→5→10→18→11。
+输入格式：
+每个输入包含1个测试用例。每个测试用例第1行给出：第1个结点的地址；结点总个数，即正整数N (&amp;lt;= 105)；以及正整数K (&amp;lt;=100" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/PAT/">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/ML">ML</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1075. 链表元素分类(25)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/10/B1075-链表元素分类-25/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-10T13:05:29.000Z" itemprop="datePublished">2018-01-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>给定一个单链表，请编写程序将链表元素进行分类排列，使得所有负值元素都排在非负值元素的前面，而[0, K]区间内的元素都排在大于K的元素前面。但每一类内部元素的顺序是不能改变的。例如：给定链表为 18→7→-4→0→5→-6→10→11→-2，K为10，则输出应该为 -4→-6→-2→7→0→5→10→18→11。</p>
+<p>输入格式：</p>
+<p>每个输入包含1个测试用例。每个测试用例第1行给出：第1个结点的地址；结点总个数，即正整数N (&lt;= 105)；以及正整数K (&lt;=1000)。结点的地址是5位非负整数，NULL地址用-1表示。</p>
+<p>接下来有N行，每行格式为：</p>
+<p>Address Data Next</p>
+<p>其中Address是结点地址；Data是该结点保存的数据，为[-105, 105]区间内的整数；Next是下一结点的地址。题目保证给出的链表不为空。</p>
+<p>输出格式：</p>
+<p>对每个测试用例，按链表从头到尾的顺序输出重排后的结果链表，其上每个结点占一行，格式与输入相同。</p>
+<p>输入样例：<br>00100 9 10<br>23333 10 27777<br>00000 0 99999<br>00100 18 12309<br>68237 -6 23333<br>33218 -4 00000<br>48652 -2 -1<br>99999 5 68237<br>27777 11 48652<br>12309 7 33218<br>输出样例：<br>33218 -4 68237<br>68237 -6 48652<br>48652 -2 12309<br>12309 7 00000<br>00000 0 99999<br>99999 5 23333<br>23333 10 00100<br>00100 18 27777<br>27777 11 -1</p>
+</blockquote>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">struct NODE &#123;</span><br><span class="line">	int add;</span><br><span class="line">	int data;</span><br><span class="line">	int next;</span><br><span class="line">&#125;;</span><br><span class="line">//注意这种直接分类输出的思想，不用进行静态链表的直接操作</span><br><span class="line">int main() &#123;</span><br><span class="line">	NODE d[100000];</span><br><span class="line">	NODE n1[100000], n2[100000], n3[100000];</span><br><span class="line">	int start, n, k;</span><br><span class="line">	int add, data, next;</span><br><span class="line">	int x1 = 0, x2 = 0, x3 = 0;</span><br><span class="line">	scanf(&quot;%d %d %d&quot;, &amp;start, &amp;n, &amp;k);</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		scanf(&quot;%d%d%d&quot;, &amp;add, &amp;data, &amp;next);</span><br><span class="line">		d[add].add = add;</span><br><span class="line">		d[add].data = data;</span><br><span class="line">		d[add].next = next;</span><br><span class="line">	&#125;</span><br><span class="line">	int now = start;</span><br><span class="line">	for (; now != -1; now = d[now].next) &#123;</span><br><span class="line">		if (d[now].data &lt; 0) &#123;</span><br><span class="line">			n1[x1++] = d[now];</span><br><span class="line">		&#125; else if (d[now].data &gt; k) &#123;</span><br><span class="line">			n3[x3++] = d[now];</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			n2[x2++] = d[now];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; x1; ++i) &#123;</span><br><span class="line">		if (i != x1 - 1) &#123;</span><br><span class="line">			printf(&quot;%05d %d %05d\n&quot;, n1[i].add, n1[i].data, n1[i+1].add);</span><br><span class="line">		&#125; else if (x2 == 0 &amp;&amp; x3 == 0) &#123;</span><br><span class="line">			printf(&quot;%05d %d -1\n&quot;, n1[i].add, n1[i].data);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			if (x2 != 0) &#123;</span><br><span class="line">				printf(&quot;%05d %d %05d\n&quot;, n1[i].add, n1[i].data, n2[0].add);;</span><br><span class="line">			&#125; else if (x3 != 0) &#123;</span><br><span class="line">				printf(&quot;%05d %d %05d\n&quot;, n1[i].add, n1[i].data, n3[0].add);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; x2; ++i) &#123;</span><br><span class="line">		if (i != x2 - 1) &#123;</span><br><span class="line">			printf(&quot;%05d %d %05d\n&quot;, n2[i].add, n2[i].data, n2[i+1].add);</span><br><span class="line">		&#125; else if (x3 == 0) &#123;</span><br><span class="line">			printf(&quot;%05d %d -1\n&quot;, n2[i].add, n2[i].data);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			if (x3 != 0) &#123;</span><br><span class="line">				printf(&quot;%05d %d %05d\n&quot;, n2[i].add, n2[i].data, n3[0].add);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; x3; ++i) &#123;</span><br><span class="line">		if (i != x3 - 1) &#123;</span><br><span class="line">			printf(&quot;%05d %d %05d\n&quot;, n3[i].add, n3[i].data, n3[i+1].add);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			printf(&quot;%05d %d -1\n&quot;, n3[i].add, n3[i].data);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272012443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272012443%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>

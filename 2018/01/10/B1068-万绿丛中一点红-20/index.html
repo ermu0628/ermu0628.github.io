@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1068. 万绿丛中一点红(20) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率
+1. 题目描述
+对于计算机而言，颜色不过是像素点对应的一个24位的数值。现给定一幅分辨率为MxN的画，要求你找出万绿丛中的一点红，即有独一无二颜色的那个像素点，并且该点的颜色与其周围8个相邻像素的颜色差充分大。
+输入格式：
+输入第一行给出三个正整数，分别是M和N（&amp;lt;= 1000），即图像的分辨率；以及TOL，是所求像素点与相邻点的颜色差阈值，色差超过TOL的点才被考虑。随后N行，每行给出M个像素的颜色值，范围在[0, 224)内。所有同行数字间用空格或TAB分开。
+输出格式：
+在一" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/PAT/">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/ML">ML</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1068. 万绿丛中一点红(20)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/10/B1068-万绿丛中一点红-20/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-10T12:51:02.000Z" itemprop="datePublished">2018-01-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>对于计算机而言，颜色不过是像素点对应的一个24位的数值。现给定一幅分辨率为MxN的画，要求你找出万绿丛中的一点红，即有独一无二颜色的那个像素点，并且该点的颜色与其周围8个相邻像素的颜色差充分大。</p>
+<p>输入格式：</p>
+<p>输入第一行给出三个正整数，分别是M和N（&lt;= 1000），即图像的分辨率；以及TOL，是所求像素点与相邻点的颜色差阈值，色差超过TOL的点才被考虑。随后N行，每行给出M个像素的颜色值，范围在[0, 224)内。所有同行数字间用空格或TAB分开。</p>
+<p>输出格式：</p>
+<p>在一行中按照“(x, y): color”的格式输出所求像素点的位置以及颜色值，其中位置x和y分别是该像素在图像矩阵中的列、行编号（从1开始编号）。如果这样的点不唯一，则输出“Not Unique”；如果这样的点不存在，则输出“Not Exist”。</p>
+<p>输入样例1：<br>8 6 200<br>0      0       0        0        0          0           0        0<br>65280      65280    65280    16711479 65280    65280    65280    65280<br>16711479 65280    65280    65280    16711680 65280    65280    65280<br>65280      65280    65280    65280    65280    65280    165280   165280<br>65280      65280       16777015 65280    65280    165280   65480    165280<br>16777215 16777215 16777215 16777215 16777215 16777215 16777215 16777215<br>输出样例1：<br>(5, 3): 16711680<br>输入样例2：<br>4 5 2<br>0 0 0 0<br>0 0 3 0<br>0 0 0 0<br>0 5 0 0<br>0 0 0 0<br>输出样例2：<br>Not Unique<br>输入样例3：<br>3 3 5<br>1 2 3<br>3 4 5<br>5 6 7<br>输出样例3：<br>Not Exist</p>
+</blockquote>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;math.h&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int color[1010][1010] = &#123;0&#125;;</span><br><span class="line">int m, n, tol;</span><br><span class="line">int dis[8][2] = &#123;&#123; -1, -1&#125;, &#123; -1, 0&#125;, &#123; -1, 1&#125;, &#123;0, 1&#125;, &#123;0, -1&#125;, &#123;1, 1&#125;, &#123;1, 0&#125;, &#123;1, -1&#125;&#125;;</span><br><span class="line"></span><br><span class="line">bool judge(int i, int j) &#123;</span><br><span class="line">	for (int k = 0; k &lt; 8; ++k) &#123;</span><br><span class="line">		int x = i + dis[k][0];</span><br><span class="line">		int y = j + dis[k][1];</span><br><span class="line">		if (x &gt;= 0 &amp;&amp; x &lt;= n &amp;&amp; y &gt;= 0 &amp;&amp; y &lt;= m &amp;&amp; color[i][j] - color[x][y] &lt;= tol &amp;&amp; color[i][j] - color[x][y] &gt;= -1 * tol) &#123;</span><br><span class="line">			return false;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return true;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int num = 0;</span><br><span class="line">	int x, y;</span><br><span class="line">	cin &gt;&gt; m &gt;&gt; n &gt;&gt; tol;</span><br><span class="line">	map&lt;int, int&gt; mp1;</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">			cin &gt;&gt; color[i][j];</span><br><span class="line">			mp1[color[i][j]]++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		for (int j = 0; j &lt; m; ++j) &#123;</span><br><span class="line">			if (mp1[color[i][j]] == 1) &#123;</span><br><span class="line">				if (judge(i, j)) &#123;</span><br><span class="line">					num++;</span><br><span class="line">					if (num &gt; 1) &#123;</span><br><span class="line">						cout &lt;&lt; &quot;Not Unique&quot; &lt;&lt; endl;</span><br><span class="line">						return 0;</span><br><span class="line">					&#125; else &#123;</span><br><span class="line">						y = i + 1;</span><br><span class="line">						x = j + 1;</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (num == 1) &#123;</span><br><span class="line">		cout &lt;&lt; &quot;(&quot; &lt;&lt; x &lt;&lt; &quot;, &quot; &lt;&lt; y &lt;&lt; &quot;): &quot; &lt;&lt; color[y - 1][x - 1] &lt;&lt; endl;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		cout &lt;&lt; &quot;Not Exist&quot; &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272012443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272012443%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>

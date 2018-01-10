@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>B1080. MOOC期终成绩 (25) | susu</title>
+    <meta name="author" content="sususususu" />
+    <meta name="version" content="1.0.0" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="通过率
+1. 题目描述
+对于在中国大学MOOC（http://www.icourse163.org/）学习“数据结构”课程的学生，想要获得一张合格证书，必须首先获得不少于200分的在线编程作业分，然后总评获得不少于60分（满分100）。总评成绩的计算公式为 G = (G期中x 40% + G期末x 60%)，如果 G期中 &amp;gt; G期末；否则总评 G 就是 G期末。这里 G期中 和 G期末 分别为学生的期中和期末成绩。
+现在的问题是，每次考试都产生一张独立的成绩单。本题就请你编写程序，把不同的" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+    <meta name="baidu-site-verification" content="F0CXvmUgA9" />
+
+    
+    
+    <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="header clearfix">
+    <div id="nav" class="nav">
+    <button id="open-panel" class="open-panel"><i class="icon-library"></i></button>
+
+    <nav class="nav-inner">
+
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/">首页</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/archives">归档</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/PAT/">PAT</a>
+        </li>
+        
+        
+        
+        <li class="nav-item">
+            <a class="nav-link" href="/tags/ML">ML</a>
+        </li>
+        
+        
+        
+
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://www.susu-tech.cc"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-题目描述"><span class="toc-number">1.</span> <span class="toc-text">1. 题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-思路"><span class="toc-number">2.</span> <span class="toc-text">2. 思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-AC代码"><span class="toc-number">3.</span> <span class="toc-text">3. AC代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content"><article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            B1080. MOOC期终成绩 (25)
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="/2018/01/10/B1080-MOOC期终成绩-25/">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-10T13:18:25.000Z" itemprop="datePublished">2018-01-10</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/PAT/">PAT</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <p>通过率<br><a id="more"></a></p>
+<h3 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h3><blockquote>
+<p>对于在中国大学MOOC（<a href="http://www.icourse163.org/）学习“数据结构”课程的学生，想要获得一张合格证书，必须首先获得不少于200分的在线编程作业分，然后总评获得不少于60分（满分100）。总评成绩的计算公式为" target="_blank" rel="noopener">http://www.icourse163.org/）学习“数据结构”课程的学生，想要获得一张合格证书，必须首先获得不少于200分的在线编程作业分，然后总评获得不少于60分（满分100）。总评成绩的计算公式为</a> G = (G期中x 40% + G期末x 60%)，如果 G期中 &gt; G期末；否则总评 G 就是 G期末。这里 G期中 和 G期末 分别为学生的期中和期末成绩。</p>
+<p>现在的问题是，每次考试都产生一张独立的成绩单。本题就请你编写程序，把不同的成绩单合为一张。</p>
+<p>输入格式：</p>
+<p>输入在第一行给出3个整数，分别是 P（做了在线编程作业的学生数）、M（参加了期中考试的学生数）、N（参加了期末考试的学生数）。每个数都不超过10000。</p>
+<p>接下来有三块输入。第一块包含 P 个在线编程成绩 G编程；第二块包含 M 个期中考试成绩 G期中；第三块包含 N 个期末考试成绩 G期末。每个成绩占一行，格式为：学生学号 分数。其中学生学号为不超过20个字符的英文字母和数字；分数是非负整数（编程总分最高为900分，期中和期末的最高分为100分）。</p>
+<p>输出格式：</p>
+<p>打印出获得合格证书的学生名单。每个学生占一行，格式为：</p>
+<p>学生学号 G编程 G期中 G期末 G</p>
+<p>如果有的成绩不存在（例如某人没参加期中考试），则在相应的位置输出“-1”。输出顺序为按照总评分数（四舍五入精确到整数）递减。若有并列，则按学号递增。题目保证学号没有重复，且至少存在1个合格的学生。</p>
+<p>输入样例：<br>6 6 7<br>01234 880<br>a1903 199<br>ydjh2 200<br>wehu8 300<br>dx86w 220<br>missing 400<br>ydhfu77 99<br>wehu8 55<br>ydjh2 98<br>dx86w 88<br>a1903 86<br>01234 39<br>ydhfu77 88<br>a1903 66<br>01234 58<br>wehu8 84<br>ydjh2 82<br>missing 99<br>dx86w 81<br>输出样例：<br>missing 400 -1 99 99<br>ydjh2 200 98 82 88<br>dx86w 220 88 81 84<br>wehu8 300 55 84 84</p>
+</blockquote>
+<h3 id="2-思路"><a href="#2-思路" class="headerlink" title="2. 思路"></a>2. 思路</h3><h3 id="3-AC代码"><a href="#3-AC代码" class="headerlink" title="3. AC代码"></a>3. AC代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;string&gt;</span><br><span class="line">#include &lt;map&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">struct Student &#123;</span><br><span class="line">	string name;</span><br><span class="line">	int score1;</span><br><span class="line">	int score2;</span><br><span class="line">	int score3;</span><br><span class="line">	int grade;</span><br><span class="line">&#125;;</span><br><span class="line">bool mycmp(Student s1, Student s2) &#123;</span><br><span class="line">	if (s1.grade &gt; s2.grade) &#123;</span><br><span class="line">		return true;</span><br><span class="line">	&#125; else if (s1.grade &lt; s2.grade) &#123;</span><br><span class="line">		return false;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return s1.name &lt; s2.name;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main() &#123;</span><br><span class="line">	int p, m, n;</span><br><span class="line">	string name;</span><br><span class="line">	int score;</span><br><span class="line">	map&lt;string, Student&gt; mp;</span><br><span class="line">	vector&lt;Student&gt; ans;</span><br><span class="line">	map&lt;string, Student&gt;::iterator it;</span><br><span class="line">	cin &gt;&gt; p &gt;&gt; m &gt;&gt; n;</span><br><span class="line">	Student student;</span><br><span class="line">	for (int i = 0; i &lt; p; ++i) &#123;</span><br><span class="line">		cin &gt;&gt; name &gt;&gt; score;</span><br><span class="line">		if (score &lt; 200) &#123;</span><br><span class="line">			continue;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			student.name = name;</span><br><span class="line">			student.score1 = score;</span><br><span class="line">			student.score2 = -1;</span><br><span class="line">			student.score3 = -1;</span><br><span class="line">			student.grade = 0;</span><br><span class="line">			mp[name] = student;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; m; ++i) &#123;</span><br><span class="line">		cin &gt;&gt; name &gt;&gt; score;</span><br><span class="line">		it = mp.find(name);</span><br><span class="line">		if (it != mp.end()) &#123;</span><br><span class="line">			mp[name].score2 = score;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i &lt; n; ++i) &#123;</span><br><span class="line">		cin &gt;&gt; name &gt;&gt; score;</span><br><span class="line">		it = mp.find(name);</span><br><span class="line">		if (it != mp.end()) &#123;</span><br><span class="line">			mp[name].score3 = score;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	for (it = mp.begin(); it != mp.end(); it++) &#123;</span><br><span class="line">		student = it-&gt;second;</span><br><span class="line">		if (student.score2 &gt; student.score3) &#123;</span><br><span class="line">			student.grade = student.score2 * 0.4 + student.score3 * 0.6 + 0.5;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			student.grade = student.score3;</span><br><span class="line">		&#125;</span><br><span class="line">		if (student.grade &gt;= 60) &#123;</span><br><span class="line">			ans.push_back(student);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sort(ans.begin(), ans.end(), mycmp);</span><br><span class="line">	vector&lt;Student&gt;::iterator it_v = ans.begin();</span><br><span class="line">	for (; it_v != ans.end(); it_v++) &#123;</span><br><span class="line">		cout &lt;&lt; it_v-&gt;name &lt;&lt; &quot; &quot; &lt;&lt; it_v-&gt;score1 &lt;&lt; &quot; &quot; &lt;&lt; it_v-&gt;score2 &lt;&lt; &quot; &quot; &lt;&lt; it_v-&gt;score3 &lt;&lt; &quot; &quot; &lt;&lt; it_v-&gt;grade &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+    </section>
+</article>
+
+
+
+</div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+</footer>
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1272012443'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1272012443%26show%3Dpic2' type='text/javascript'%3E%3C/script%3E"));</script>
+
+
+    </div>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var nodes = {
+                nav: $('#nav'),
+                aside: $('#aside'),
+                navTags: $('#nav-tags')
+            };
+
+            $('#open-panel, #aside-mask').on('click', function() {
+                nodes.aside.toggleClass('panel-show');
+            });
+            $('#nav-tag').on('click', function(event) {
+                event.preventDefault();console.log(nodes.navTags.attr('class'))
+                nodes.navTags.toggleClass('tag-show');console.log(nodes.navTags.attr('class'))
+            })/*.hover(function() {
+                nodes.navTags.addClass('tag-show');
+            }, function() {
+                nodes.navTags.removeClass('tag-show');
+            });*/
+        });
+    </script>
+
+</body>
+</html>
